@@ -4,12 +4,14 @@ const Settings = require('./settings');
 const server = new Hapi.Server();
 const Routes = require('./lib/routes');
 const Path = require('path');
+
+
 server.connection({
   port: Settings.port
 });
 
 //register the views
-server.register(require('vision'), (err) => {
+server.register([require('vision'), require('inert')], (err) => {
   Hoek.assert(!err, err);
   server.views({
     engines: {
