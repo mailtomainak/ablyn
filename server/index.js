@@ -3,11 +3,6 @@ const restify = require('restify');
 const tweetController = require('../controller/tweetController');
 const followerController = require('../controller/followerController');
 
-const respond = (req, res, next) => {
-  res.send('hello ' + req.params.name);
-  next();
-}
-
 const server = restify.createServer();
 server.use(restify.plugins.bodyParser());
 //
@@ -21,3 +16,4 @@ server.post('/follow', followerController.add_follower);
 server.get('/follow/:userId', followerController.get_followers);
 
 server.listen(8080);
+module.exports = server
