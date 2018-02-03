@@ -5,15 +5,14 @@ exports.add_follower = function(req, res) {
   const userObject = req.body;
   console.log(userObject);
   followerConnection.query('CALL ?? (?,?)', ['AddFollowers', userObject.userId,
-      userObject.followerId
-    ], (err, data) => {
-      console.log(err);
-      console.log(data);
-    })
-    // const userId = req.params.userId;
-    // followerConection.query('', (err, data) => {
-    //
-    // })
+    userObject.followerId
+  ], (err, data) => {
+    if (!err) {
+      res.send(200);
+    } else {
+      res.send(500);
+    }
+  })
 }
 
 //get followers for a specific user id
